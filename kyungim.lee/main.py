@@ -1,0 +1,44 @@
+# This is a sample Python script.
+
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+
+# 파이썬의 다양한 입력방법 : https://velog.io/@tbnsok40/파이썬-다양한-입력방법-input-read-readline
+from sys import stdin
+from collections import deque
+
+# dx[0], dy[0] => 오른쪽
+# dx[1], dy[1] => 왼쪽
+# dx[2], dy[2] => 아래
+# dx[3], dy[3] => 위
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+if __name__ == '__main__':
+    # https://velog.io/@pyh8618/Python-map-함수-사용법
+    # 리스트의 요소를 지정된 함수로 처리한다. hashmap의 map이 아닌 mapping의 map이다
+
+    # 첫 줄을 받아와 N, M 변수에 저장
+    N, M = map(int, stdin.readline().split())
+
+    # 이후의 데이터를 받아와 maze 배열에 저장
+    # stdin.readline() : '101111\n'
+    # stdin.readline().rstrip() : '101111'
+    # M길이의 스트링을 N번 동적으로 넣어준다.
+    # maze배열은 ['101111', '101010', '101011', '111011'] 형태의 1*4 배열이 되지만
+    # 굳이 스트링을 split하지 않아도 maze[0][0] => '1' 과 같이 접근 가능하다
+    maze = [stdin.readline().rstrip() for _ in range(N)]
+
+    # 방문여부 배열
+    visited = [[0]*M for _ in range(N)]
+
+    # BFS탐색을 위한 큐
+    tmpQ = deque()
+
+    # 변수 초기화
+    tmpQ = [(0,0)]
+    visited[0][0] = 1
+
+    # 1,1에서부터 탐색 시작
+    while tmpQ.len > 0:
+        topX, topY = tmpQ.pop()
