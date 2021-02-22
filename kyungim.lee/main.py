@@ -30,15 +30,34 @@ if __name__ == '__main__':
     maze = [stdin.readline().rstrip() for _ in range(N)]
 
     # 방문여부 배열
-    visited = [[0]*M for _ in range(N)]
+    visited = [[False]*M for _ in range(N)]
 
     # BFS탐색을 위한 큐
     tmpQ = deque()
 
     # 변수 초기화
     tmpQ = [(0,0)]
-    visited[0][0] = 1
+    visited[0][0] = True
 
     # 1,1에서부터 탐색 시작
     while tmpQ.len > 0:
-        topX, topY = tmpQ.pop()
+        curX, curY = tmpQ.pop()
+
+        for i in range(4):
+            nextX, nextY = curX + dx[i], curY + dy[i]
+
+            # 정답인 경우
+
+            # 범위를 벗어나는 경우
+            if nextX >= N or nextX < 0 or nextY >= M or nextY < 0:
+                continue
+
+            # 이동할 수 없는 칸인경우
+            if maze[nextX][nextY] == 0:
+                continue
+
+            # 이미 방문한 칸인경우
+            if visited[nextX][nextY] == True:
+                continue
+
+
