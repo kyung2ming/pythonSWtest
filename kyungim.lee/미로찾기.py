@@ -27,37 +27,42 @@ if __name__ == '__main__':
     # M길이의 스트링을 N번 동적으로 넣어준다.
     # maze배열은 ['101111', '101010', '101011', '111011'] 형태의 1*4 배열이 되지만
     # 굳이 스트링을 split하지 않아도 maze[0][0] => '1' 과 같이 접근 가능하다
-    maze = [stdin.readline().rstrip() for _ in range(N)]
+    # maze = [map(int, stdin.readline().rstrip()) for _ in range(N)]
+    maze = [list(map(int, stdin.readline()[:-1])) for _ in range(N)]
 
     # 방문여부 배열
-    visited = [[False]*M for _ in range(N)]
+    # visited = [[False]*M for _ in range(N)]
 
     # BFS탐색을 위한 큐
     tmpQ = deque()
 
     # 변수 초기화
-    tmpQ = [(0,0)]
-    visited[0][0] = True
+    tmpQ = [(0, 0, 1)]
+    maze[0][0] = 0
 
-    # 1,1에서부터 탐색 시작
-    while tmpQ.len > 0:
-        curX, curY = tmpQ.pop()
+    def bfs():
+        # 0,0 에서부터 탐색 시작
+        while tmpQ.__len__() > 0:
+            curX, curY, cnt = tmpQ.pop()
 
-        for i in range(4):
-            nextX, nextY = curX + dx[i], curY + dy[i]
+            for i in range(4):
+                nextX, nextY = curX + dx[i], curY + dy[i]
 
-            # 정답인 경우
+                # 정답인 경우
+                if nextX == N - 1 and nextY == M - 1:
+                    print(cnt+1)
+                    return
 
-            # 범위를 벗어나는 경우
-            if nextX >= N or nextX < 0 or nextY >= M or nextY < 0:
-                continue
+                # 범위를 벗어나는 경우
+                if nextX >= N or nextX < 0 or nextY >= M or nextY < 0:
+                    continue
 
-            # 이동할 수 없는 칸인경우
-            if maze[nextX][nextY] == 0:
-                continue
+                # 이동할 수 없는 칸인경우(벽, 혹은 이미 방문한 칸)
+                if maze[nextX][nextY] == 0:
+                    continue
 
-            # 이미 방문한 칸인경우
-            if visited[nextX][nextY] == True:
-                continue
+                # 지나온 칸은 벽으로 막는다
+                maze[nextX][nextY] = 0
+                tmpQ.append((nextX, nextY, cnt+1))
 
-
+    bfs()
