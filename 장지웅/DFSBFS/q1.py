@@ -24,6 +24,7 @@ def bfs(M, N, box):
 
     days = -1
 
+    # 스택 있는동안
     while ripe:
         print(ripe)
         days += 1
@@ -45,26 +46,24 @@ def bfs(M, N, box):
 
 
 # 수정필요 (숏코딩)
-M, N = data[0].split('\n')[0].split()
-M = int(M)
-N = int(N)
+M, N = map(int, data[0].split('\n')[0].split())
 box, ripe = [], deque()
 
-# for i in range(1, N+1):
-#     temp = []
-#     for j in data[i].strip().split():
-#         temp.append(int(j))
-#     box.append(temp)
-r = sys.stdin.readline
-# M, N = map(int, r().split())
+for i in range(1, N+1):
+    temp = []
+    for j in data[i].strip().split():
+        temp.append(int(j))
+    box.append(temp)
 
-for i in range(N):
-    row = list(map(int, r().split()))
-    for j in range(M):
-        if row[j] == 1:
-            ripe.append([i, j])
-    box.append(row)
-print(ripe)
+# for i in range(N):
+#     row = list(map(int, r().split()))
+#     # for 1단계에서 띄어쓰기단위 무시
+#     for j in range(M):
+#         # for 2단계에서 띄어쓰기 체크
+#         if row[j] == 1:
+#             ripe.append([i, j])
+#     box.append(row)
+print(box)
 print(bfs(M, N, box))
 # 코드 끝
 
