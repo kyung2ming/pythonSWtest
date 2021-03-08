@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/7562 나이트의 이동
 from collections import deque
 
 # 이동할 방향

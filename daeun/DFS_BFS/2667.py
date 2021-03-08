@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2667 단지번호붙이기
 # 데이터 입력받기
 n = int(input())
 graph = []

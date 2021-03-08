@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2178 미로탐색
 from collections import deque
 
 # 데이터 입력받기
