@@ -9,8 +9,7 @@ d = [0] * n
 
 for i in range(n):
     for j in range(i):
-        if array[j] < array[i] and d[j] > d[i]:
-            d[i] = d[j]
-    d[i] += 1
+        if array[j] < array[i] and d[j] + 1 > d[i]:
+            d[i] = d[j] + 1
 
 print(max(d))
