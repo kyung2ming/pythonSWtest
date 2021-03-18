@@ -9,9 +9,9 @@ if __name__ == '__main__':
 
     # 수열 A의 크기
     N = int(stdin.readline().strip())
-    
+
     # 수열 A를 이루는 Ai
-    A = [map(int, stdin.readline().strip().split(" ")) for _ in range(N)]
+    A = list(map(int, stdin.readline().strip().split(" ")))
 
     memo[0] = 1
     _max = 0
@@ -20,7 +20,7 @@ if __name__ == '__main__':
         memo[i] = 1
         for j in range(i):
             if A[i] > A[j] and memo[j] + 1 > memo[i]:
-                memo[i] = memo[j] +1
+                memo[i] = memo[j] + 1
         if _max < memo[i]:
             _max = memo[i]
 
