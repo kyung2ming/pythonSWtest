@@ -20,8 +20,10 @@ def solution(n, s, a, b, fares):
     # 플로이드 알고리즘
     for k in range(1, n + 1):
         for a1 in range(1, n + 1):
-            for b1 in range(1, n + 1):
+            #  for b1 in range(1, n + 1): 시간초과
+            for b1 in range(a1 + 1, n + 1):
                 graph[a1][b1] = min(graph[a1][b1], graph[a1][k] + graph[k][b1])
+                graph[b1][a1] = graph[a1][b1]
 
     cost = []
     # 경유지를 하나씩 지정해본다
