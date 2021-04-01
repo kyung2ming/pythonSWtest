@@ -12,6 +12,7 @@ g = [[] for _ in range(v + 1)]
 
 for _ in range(e):
     u1, v1, w1 = map(int, input().split())
+    # u1 에서 v1 까지 가는 비용이 w1
     g[u1].append((v1, w1))
 
 
